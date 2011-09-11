@@ -16,6 +16,16 @@ gem 'ascribe', '>= 0.0.1'
 
 ## Usage
 
+To use Ascribe in a model, just make your class look like this:
+
+```ruby
+require 'ascribe'
+
+class Foo
+  include Ascribe::Attributes
+  
+end
+```
 ### Declaring Attributes
 
 Use the `attribute` class method to define attributes on your model. The sole requirements are the name and type of the attribute.
@@ -67,16 +77,3 @@ class Post
   attribute :tags, Array, :in => ["foo", "bar"], :not_in => ["baz", "qux"]          # inclusion/exclusion
 end
 ```
-* presence
-* numericality
-* format #=> :format => /^[\-[:alnum:]_]+$/
-* inclusion #=> :in => ["foo", "bar"]
-* exclusion #=> :not_in => ["baz", "qux"]
-* length #=> :length => 10
-
-* presence #=> :required => (true|false)
-* numericality #=> :numeric => (true|false)
-* format #=> :format => /^[\-[:alnum:]_]+$/
-* inclusion #=> :in => ["foo", "bar"]
-* exclusion #=> :not_in => ["baz", "qux"]
-* length #=> :length => 10
