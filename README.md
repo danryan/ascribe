@@ -29,6 +29,17 @@ class User
 end
 ```
 
+### Setting types
+
+The type is the second argument of the `attribute` class method. Type should always be a class name, as Ascribe checks that the assigned value is an instance of the class. Type can be a single class name, or an array of classes
+
+```ruby
+class Foo
+  attribute :bar, String
+  attribute :baz, [String, Symbol]
+end
+```
+
 ### Specifying defaults
 
 Defaults can be set via the :default key for an attribute. Defaults can either be a standard values (strings, arrays, hashes, etc), or they can be anything that responds to `#call`, like Procs.
