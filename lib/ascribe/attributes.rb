@@ -111,7 +111,7 @@ module Ascribe
             val = 
             write_attribute(key, value)
           else
-            options[key] = value
+            options[key.to_s] = value
           end
         end
         
