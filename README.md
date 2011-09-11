@@ -64,6 +64,7 @@ class Post
   attribute :body, String, :length => { :min => 0, :max => 1000 }                   # length
   attribute :hits, Integer, :numeric => true                                        # numericality
   attribute :email, String, :format => /\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/  # format
+  attribute :tags, Array, :in => ["foo", "bar"], :not_in => ["baz", "qux"]          # inclusion/exclusion
 end
 ```
 * presence
