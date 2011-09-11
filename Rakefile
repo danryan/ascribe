@@ -18,8 +18,8 @@ task :spork do
 end
 
 
-Bundler.require(:doc)
-desc "Generate documentation"
-YARD::Rake::YardocTask.new do |t|
-  t.files = [ 'lib/**/*.rb' ]
-end
+# Bundler.require(:doc)
+# desc "Generate documentation"
+# YARD::Rake::YardocTask.new do |t|
+#   t.files = [ 'lib/**/*.rb' ]
+# end
