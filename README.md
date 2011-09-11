@@ -15,7 +15,7 @@ gem install ascribe
 If you're using Bundler, make sure you add it to your Gemfile:
 
 ```ruby
-gem 'ascribe', '>= 0.0.1'
+gem 'ascribe', '>= 0.0.2'
 ```
 
 ## Usage
