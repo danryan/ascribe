@@ -81,3 +81,17 @@ class Post
   attribute :tags, Array, :in => ["foo", "bar"], :not_in => ["baz", "qux"]          # inclusion/exclusion
 end
 ```
+
+### Bonus options
+
+If any attributes not explicitly stated are included in the hash used to instantiate your object, they won't throw an error or be discarded; instead, they get assigned to the @options instance variable (handy if you need arbitrary attributes sometimes):
+
+```ruby
+class Foo
+  attribute :bar, String
+end
+
+foo = Foo.new(:bar => "asdf", :baz => "qwer", :qux => "zxcv")
+foo.attributes #=> {"bar" => "asdf"}
+foo.options #=> {"baz"=>"qwer", "qux"=>"zxcv"}
+```
