@@ -54,9 +54,24 @@ pants.on #=> false
 ```
 
 
-### Validating attributes
+### Validation options
 
-Ascribe can validate attributes for
+Ascribe can validate attributes in a number of ways
+
+```ruby
+class Post
+  attribute :title, String, :required => true                                       # presence
+  attribute :body, String, :length => { :min => 0, :max => 1000 }                   # length
+  attribute :hits, Integer, :numeric => true                                        # numericality
+  attribute :email, String, :format => /\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/  # format
+end
+```
+* presence
+* numericality
+* format #=> :format => /^[\-[:alnum:]_]+$/
+* inclusion #=> :in => ["foo", "bar"]
+* exclusion #=> :not_in => ["baz", "qux"]
+* length #=> :length => 10
 
 * presence #=> :required => (true|false)
 * numericality #=> :numeric => (true|false)
