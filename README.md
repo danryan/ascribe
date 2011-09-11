@@ -26,6 +26,11 @@ class User
   attribute :admin, [TrueClass, FalseClass], :default => false
 end
 
+user.valid?
+# => false 
+user.errors
+# => #<ActiveModel::Errors:0x007fdbc4010f20 @base=#<User:0x007fdbc4013f68 @name=nil, @admin=false, @validation_context=nil, @errors=#<ActiveModel::Errors:0x007fdbc4010f20 ...>>, @messages={:name=>["can't be blank"]}>
+
 user = User.new(:name => "joe", :admin => true)
 user.valid?
 # => true
