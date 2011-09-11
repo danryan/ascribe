@@ -1,6 +1,10 @@
 # Ascribe
 
-Ascribe is a library for adding attributes to your classes when you don't have the luxury of ORM magic handling attributes and validations for you.
+Simple attributes for your Ruby objects.
+
+## Why?
+
+At some point during most of my projects, I end up hacking some sort of attribute and validation system into my models. I decided it was finally time I extracted my hacks into a library that provided a consistent way to add attributes to my classes that offered more than simple accessor methods. Models aren't always tied to an ORM that does this magic for you :)
 
 ## Installation
 
