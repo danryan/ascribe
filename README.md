@@ -52,3 +52,15 @@ end
 pants = Pants.new
 pants.on #=> false
 ```
+
+
+### Validating attributes
+
+Ascribe can validate attributes for
+
+* presence #=> :required => (true|false)
+* numericality #=> :numeric => (true|false)
+* format #=> :format => /^[\-[:alnum:]_]+$/
+* inclusion #=> :in => ["foo", "bar"]
+* exclusion #=> :not_in => ["baz", "qux"]
+* length #=> :length => 10
