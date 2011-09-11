@@ -14,12 +14,20 @@ If you're using Bundler, make sure you add it to your Gemfile:
 gem 'ascribe', '>= 0.0.1'
 ```
 
-class Foo
+## Usage
+
+First, a quick example to demonstrate several of Ascribe's features:
+
+```ruby
+class User
   include Ascribe::Attributes
   
-  attribute :name, String, :required => true, :default => "NAME"
-  attribute :stuff, String, :required => true
+  attribute :name, String, :required => true
+  attribute :admin, [TrueClass, FalseClass], :default => false
 end
 
-foo = Foo.new(:name => "bar", :type => "baz")
-foo.name
+user = User.new(:name => "joe", :admin => true)
+user.valid?
+# => true
+
+```
