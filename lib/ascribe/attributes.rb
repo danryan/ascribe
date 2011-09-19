@@ -114,8 +114,6 @@ module Ascribe
             options[key.to_s] = value
           end
         end
-        
-        # Iterate through 
       end
       
       def update(attrs={})
@@ -160,6 +158,13 @@ module Ascribe
       
       def to_hash
         attributes.merge("options" => options)
+      end
+      
+      def inspect
+        attrs = options.map do |option|
+          "@#{option[0]}=#{option[1]}"
+        end
+        "#<#{self.class.name} #{attrs.join(" ")}>"
       end
       
     end

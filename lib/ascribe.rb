@@ -6,6 +6,6 @@ require 'ascribe/version'
 require 'ascribe/attributes'
 
 module Ascribe
-  # Your code goes here...
+  class ValidationError; end
 end
 
