@@ -8,4 +8,3 @@ require 'ascribe/attributes'
 module Ascribe
   class ValidationError; end
 end
-
