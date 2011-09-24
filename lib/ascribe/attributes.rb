@@ -168,7 +168,7 @@ module Ascribe
           "@#{option[0]}=#{option[1] ? option[1] : "nil"}"
         end
         result = attrs + opts
-        "#<#{self.class.name} #{attrs.join(" ")}>"
+        "#<#{self.class.name} #{result.join(" ")}>"
       end
       
     end
