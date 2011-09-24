@@ -164,10 +164,7 @@ module Ascribe
         attrs = attributes.map do |attribute|
           "@#{attribute[0]}=#{attribute[1] ? attribute[1] : "nil"}"
         end
-        opts = options.map do |option|
-          "@#{option[0]}=#{option[1] ? option[1] : "nil"}"
-        end
-        result = attrs + opts
+        result = attrs + ["@options=#{options}]
         "#<#{self.class.name} #{result.join(" ")}>"
       end
       
