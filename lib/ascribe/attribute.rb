@@ -23,11 +23,11 @@ module Ascribe
     def set(value)
       if type.kind_of?(Array)
         if !value.nil? && !type.nil? && !type.include?(value.class)
-          raise Mastermind::ValidationError, "#{name} must be an instance of #{type}"
+          raise Ascribe::ValidationError, "#{name} must be an instance of #{type}"
         end
       elsif type.kind_of?(Class)
         if !value.nil? && !type.nil? && (!value.kind_of?(type) || type == nil)
-          raise Mastermind::ValidationError, "#{name} must be an instance of #{type}"
+          raise Ascribe::ValidationError, "#{name} must be an instance of #{type}"
         end
       end
       value
