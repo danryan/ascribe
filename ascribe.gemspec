@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["dan@appliedawesome.com"]
   s.homepage    = "https://github.com/danryan/ascribe"
   s.summary     = %q{Attributes for your Ruby objects}
-  s.description = %q{}
+  s.description = %q{No longer supported - please use active_attr (https://github.com/cgriego/active_attr)}
 
   s.rubyforge_project = "ascribe"
 
