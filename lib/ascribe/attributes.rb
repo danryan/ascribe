@@ -70,104 +70,102 @@ module Ascribe
       
     end
     
-    module InstanceMethods
-      def initialize(attrs={})
-        self.class.attributes.each_pair do |key, attribute|
-          (class << self; self; end).class_eval do
-            define_method(attribute.name) do |*value, &block|
-              if !block.nil?
-                write_attribute(attribute.name, block)
-              elsif !value.blank?
-                write_attribute(attribute.name, value.first)
-              else
-                read_attribute(attribute.name)
-              end
+    def initialize(attrs={})
+      self.class.attributes.each_pair do |key, attribute|
+        (class << self; self; end).class_eval do
+          define_method(attribute.name) do |*value, &block|
+            if !block.nil?
+              write_attribute(attribute.name, block)
+            elsif !value.blank?
+              write_attribute(attribute.name, value.first)
+            else
+              read_attribute(attribute.name)
             end
-            define_method("#{attribute.name}=") do |*value, &block|
-              if !block.nil?
-                write_attribute(attribute.name, block)
-              elsif !value.blank?
-                write_attribute(attribute.name, value.first)
-              end
-            end 
           end
-        end
-        assign_attributes(attrs)
-      end
-      
-      def options
-        @options ||= {}
-      end
-      
-      def assign_attributes(attrs)
-        attribute_keys.each do |attr_key|
-          value = read_attribute(attr_key)
-          write_attribute(attr_key, value)
-        end
-
-        # Set all attributes supplied in the attrs hash
-        attrs.each_pair do |key, value|
-          if respond_to?(:"#{key}")
-            val = 
-            write_attribute(key, value)
-          else
-            options[key.to_s] = value
-          end
+          define_method("#{attribute.name}=") do |*value, &block|
+            if !block.nil?
+              write_attribute(attribute.name, block)
+            elsif !value.blank?
+              write_attribute(attribute.name, value.first)
+            end
+          end 
         end
       end
-      
-      def update(attrs={})
-        assign_attributes(attrs)
-      end
-      
-      def read_attribute(name)
-        if attribute = self.class.attributes[name.to_s]
-          value = attribute.get(instance_variable_get(:"@#{name}"))
-          instance_variable_set(:"@#{name}", value)
-        end
-      end
-      
-      def write_attribute(name, value)
-        attribute = self.class.attributes[name.to_s]
-        instance_variable_set(:"@#{name}", attribute.set(value))
-      end
-      
-      def attributes
-        attributes = {}
-        
-        self.class.attributes.each do |key, attribute|
-          name = attribute.name
-          attributes[name] = read_attribute(name) if respond_to?(name)
-        end
-        return attributes
-      end
-      
-      def attributes=(attrs={})
-        return if attrs.blank?
-        
-        attrs.each_pair do |key, value|
-          if respond_to?(:"#{key}")
-            write_attribute(key, value)
-          end
-        end
-      end
-      
-      def attribute_keys
-        self.class.attributes.keys
-      end
-      
-      def to_hash
-        attributes.merge("options" => options)
-      end
-      
-      def inspect
-        attrs = attributes.map do |attribute|
-          "@#{attribute[0]}=#{attribute[1] ? attribute[1] : "nil"}"
-        end
-        result = attrs + ["@options=#{options}"]
-        "#<#{self.class.name} #{result.join(" ")}>"
-      end
-      
+      assign_attributes(attrs)
     end
+    
+    def options
+      @options ||= {}
+    end
+    
+    def assign_attributes(attrs)
+      attribute_keys.each do |attr_key|
+        value = read_attribute(attr_key)
+        write_attribute(attr_key, value)
+      end
+
+      # Set all attributes supplied in the attrs hash
+      attrs.each_pair do |key, value|
+        if respond_to?(:"#{key}")
+          val = 
+          write_attribute(key, value)
+        else
+          options[key.to_s] = value
+        end
+      end
+    end
+    
+    def update(attrs={})
+      assign_attributes(attrs)
+    end
+    
+    def read_attribute(name)
+      if attribute = self.class.attributes[name.to_s]
+        value = attribute.get(instance_variable_get(:"@#{name}"))
+        instance_variable_set(:"@#{name}", value)
+      end
+    end
+    
+    def write_attribute(name, value)
+      attribute = self.class.attributes[name.to_s]
+      instance_variable_set(:"@#{name}", attribute.set(value))
+    end
+    
+    def attributes
+      attributes = {}
+      
+      self.class.attributes.each do |key, attribute|
+        name = attribute.name
+        attributes[name] = read_attribute(name) if respond_to?(name)
+      end
+      return attributes
+    end
+    
+    def attributes=(attrs={})
+      return if attrs.blank?
+      
+      attrs.each_pair do |key, value|
+        if respond_to?(:"#{key}")
+          write_attribute(key, value)
+        end
+      end
+    end
+    
+    def attribute_keys
+      self.class.attributes.keys
+    end
+    
+    def to_hash
+      attributes.merge("options" => options)
+    end
+    
+    def inspect
+      attrs = attributes.map do |attribute|
+        "@#{attribute[0]}=#{attribute[1] ? attribute[1] : "nil"}"
+      end
+      result = attrs + ["@options=#{options}"]
+      "#<#{self.class.name} #{result.join(" ")}>"
+    end
+      
   end
 end
